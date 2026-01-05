@@ -15,25 +15,32 @@ include 'script_runner.php';
 <body>
     <h1>Asterisk WebUI</h1>
     <form method="post">
-        <select name="script_name" id="script-select">
+				<label for="script-select">Choose a script:</label>
+
+        <select name="script_selection" id="script-select">
+
+						<option value="" disabled selected>- Choose a script -</option>
 
             <?php
             // Dynamically create a button for every script defined in $scripts array
             foreach ($scripts as $name => $path):
-                ?>
-                <option value=<?php htmlspecialchars($name) ?>><?php htmlspecialchars($name) ?></option>
-
-
+            ?>
+								<option value="<?php echo htmlspecialchars($name); ?>">
+										<?php echo htmlspecialchars($name); ?>
+								</option>
             <?php endforeach; ?>
         </select>
 
-        <button type="submit" name="reset" value="1">Reset Output</button>
+				<button type="submit" name="execute_script" value="1">Run Script</button>
+
+				<button type="submit" name="reset" value="1">Reset Output</button>
     </form>
 
     <?php
     // Display script execution results if available
     if ($output):
-        ?>
+				?>
+				<hr>
         <h2>Output:</h2>
         <pre><?= htmlspecialchars($output) ?></pre>
     <?php endif; ?>

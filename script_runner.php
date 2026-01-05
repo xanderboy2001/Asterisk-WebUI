@@ -53,9 +53,11 @@ $output = '';
 // Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Run the selected script
-    if (isset($_POST['run_script'])) {
-        $selected = $_POST['run_script'];
-        $output = run_script($selected, $scripts, null);
+    if (isset($_POST['execute_script'])) {
+				if (isset($_POST['script_selection'])) {
+						$selected = $_POST['script_selection'];
+						$output = run_script($selected, $scripts, null);
+				}
     }
     // Clear the output display
     if (isset($_POST['reset'])) {
