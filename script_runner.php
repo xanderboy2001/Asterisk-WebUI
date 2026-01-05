@@ -38,6 +38,10 @@ $scripts = [
  */
 function run_script(string $script_name, array $scripts, ?string $input = null): string
 {
+		# Bypass this function for testing
+		return "This is where I'd put my output...";
+
+
     if (!array_key_exists($script_name, $scripts)) {
         return "Invalid script selected.";
     }
