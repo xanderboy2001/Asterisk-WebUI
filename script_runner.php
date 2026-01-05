@@ -1,6 +1,9 @@
 <?php
+// Configuration: Define script directory (Development vs Production paths)
 #$scripts_path = '/var/lib/tftpboot';
 $scripts_path = 'scripts';
+
+// Array mapping GUI button labels to specific shell script paths
 $scripts = [
     'Reload' => "$scripts_path/asterisk_reload.sh",
     'Check Free Extensions' => "$scripts_path/check_free_exten.sh",
@@ -26,26 +29,35 @@ $scripts = [
     'View Call History' => "$scripts_path/view_call_history.sh",
     'View Extension Dialplan' => "$scripts_path/view_exten_dialplan.sh",
     'View Offline Phones' => "$scripts_path/view_offline_phones.sh",
-    'Delete Voicemail' => "$scripts_path/VM_delete.sh"
+    'Delete Voicemail Config' => "$scripts_path/VM_delete.sh"
 ];
 
-function run_script(string $script_name, array $scripts, ?string $input = null): string {
+/**
+ * Validates script existence and executes it via shell.
+ * Returns the output (stdout and stderr).
+ */
+function run_script(string $script_name, array $scripts, ?string $input = null): string
+{
     if (!array_key_exists($script_name, $scripts)) {
         return "Invalid script selected.";
     }
-    
+
+    // Escape command to prevent arbitrary command execution
     $command = escapeshellcmd($scripts[$script_name]);
-    
+
     return shell_exec($command . " 2>&1");
 }
 
 $output = '';
 
+// Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Run the selected script
     if (isset($_POST['run_script'])) {
         $selected = $_POST['run_script'];
         $output = run_script($selected, $scripts, null);
     }
+    // Clear the output display
     if (isset($_POST['reset'])) {
         $output = '';
     }
