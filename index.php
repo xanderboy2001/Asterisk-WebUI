@@ -34,7 +34,9 @@ include 'script_runner.php';
 						<div class="cards inout-card">
 								<div class="card-header">Input/Output</div>
 										<div class="card-content" id="io-output">
-												No script selected
+												<span><strong>Script Name: </strong><span id="script-name">No script selected</span></span>
+												<span><label for="text-input">Input:</label>
+												<input type="text" id="text-input" name="text-input" /></span>
 										</div>
 						</div>
 						<div class="cards help-card">
@@ -48,7 +50,7 @@ include 'script_runner.php';
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 		const buttons = document.querySelectorAll('.script-button');
-		const ioOutput = document.getElementById('io-output');
+		const scriptNameLabel = document.getElementById('script-name');
 		const helpCard = document.querySelector(".help-card .card-content");
 		let selectedButton = null;
 
@@ -57,13 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
 						if (selectedButton === btn) {
 								btn.classList.remove('selected');
 								selectedButton = null;
-								ioOutput.textContent = "No script selected";
+								scriptNameLabel.textContent = "No script selected";
 								helpCard.textContent = "Help Card";
 						} else {
 								if (selectedButton) selectedButton.classList.remove('selected');
 										btn.classList.add('selected');
 										selectedButton = btn;
-										ioOutput.textContent = btn.dataset.script;
+										scriptNameLabel.textContent = btn.dataset.script;
 
 										fetch(`get_help.php?path=${encodeURIComponent(btn.dataset.path)}`)
 												.then(response => response.text())
