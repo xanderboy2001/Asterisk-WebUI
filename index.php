@@ -18,54 +18,31 @@ include 'script_runner.php';
 				<h1>Asterisk WebUI</h1>
 				<div class="card-box">
 						<div class="cards script-card">
-								<form method="post">
-										<?php foreach ($scripts as $name => $path): ?>
-												<button class=script type="submit">
-														<?php echo htmlspecialchars($name); ?>
-												</button>
-										<?php endforeach ?>
-								</form>
+								<div class="card-header">Scripts</div>
+								<div class="card-content">
+										<form method="post" class="card-content">
+												<?php foreach ($scripts as $name => $path): ?>
+														<button class="script-button" type="submit">
+																<?php echo htmlspecialchars($name); ?>
+														</button>
+												<?php endforeach ?>
+										</form>
+								</div>
 						</div>
 						<div class="cards inout-card">
-								Input/Output Card
+								<div class="card-header">Input/Output</div>
+										<div class="card-content">
+												Input/Output Card
+										</div>
 						</div>
 						<div class="cards help-card">
-								Help Card
+								<div class="card-header">Help</div>
+										<div class="card-content">
+												Help Card
+										</div>
 						</div>
 				</div>
 		</div>
-<!--
-    <form method="post">
-				<label for="script-select">Choose a script:</label>
-
-        <select name="script_selection" id="script-select">
-
-						<option value="" disabled selected>- Choose a script -</option>
-
-            <?php
-            // Dynamically create a button for every script defined in $scripts array
-            foreach ($scripts as $name => $path):
-            ?>
-								<option value="<?php echo htmlspecialchars($name); ?>">
-										<?php echo htmlspecialchars($name); ?>
-								</option>
-            <?php endforeach; ?>
-        </select>
-
-				<button type="submit" name="execute_script" value="1">Run Script</button>
-
-				<button type="submit" name="reset" value="1">Reset Output</button>
-    </form>
-
-    <?php
-    // Display script execution results if available
-    if ($output):
-				?>
-				<hr>
-        <h2>Output:</h2>
-        <pre><?= htmlspecialchars($output) ?></pre>
-		<?php endif; ?>
--->
 <script id="__bs_script__">//<![CDATA[
   (function() {
     try {
