@@ -14,6 +14,7 @@ include 'script_runner.php';
 
 <body>
     <h1>Asterisk WebUI</h1>
+<!--
     <form method="post">
 				<label for="script-select">Choose a script:</label>
 
@@ -43,7 +44,8 @@ include 'script_runner.php';
 				<hr>
         <h2>Output:</h2>
         <pre><?= htmlspecialchars($output) ?></pre>
-    <?php endif; ?>
+		<?php endif; ?>
+-->
 </body>
 
 </html>
