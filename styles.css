@@ -59,9 +59,20 @@ html, body {
 		display: block;
 		width: 100%;
 		padding: 1rem;
+		margin-bottom: 0.5rem;
 		font-size: 1rem;
 		cursor: pointer;
 		box-sizing: border-box;
+		border: 1px solid #333;
+		border-radius: 0.25rem;
+		background-color: #f0f0f0;
+		transition: background-color 0.2s, border-color 0.2s;
+}
+
+.script-button.selected {
+		background-color: #3490dc;
+		color: white;
+		border-color: #2779bd;
 }
 
 .script-button:last-child {
