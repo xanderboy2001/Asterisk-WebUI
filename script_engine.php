@@ -299,10 +299,10 @@ function validate_input(string $input, array $rules = []): bool {
 		if (isset($rules['type'])) {
 				switch ($rules['type']) {
 						case 'number':
+								if (!ctype_digit($input)) return false;
 								if (isset($rules['length']) && strlen($input) !== $rules['length']) {
 										return false;
 								}
-								if (!ctype_digit($input)) return false;
 								break;
 						case 'mac':
 								if (!preg_match('/^([0-9A-Fa-f]{2}[:-]?){5}[0-9A-Fa-f]{2}$/', $input)) {
