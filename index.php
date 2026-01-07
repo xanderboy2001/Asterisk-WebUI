@@ -46,6 +46,9 @@ include 'script_runner.php';
 				</div>
 		</div>
 <script>
+const SCRIPT_DEFINITIONS = <?php echo json_encode($scripts, JSON_HEX_TAG | JSON_HEX_APOS); ?>;
+</script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
 		const buttons = document.querySelectorAll('.script-button');
 		const scriptNameLabel = document.getElementById('script-name');
@@ -124,9 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				});
 		});
 });
-</script>
-<script>
-const SCRIPT_DEFINITIONS = <?php echo json_encode($scripts, JSON_HEX_TAG | JSON_HEX_APOS); ?>;
 </script>
 <script id="__bs_script__">//<![CDATA[
   (function() {
