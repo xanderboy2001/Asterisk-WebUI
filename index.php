@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (!inputs.length) {
 						ioCard.insertAdjacentHTML(
 								"beforeend",
-								"<em>No input required</em>
+								"<em>No input required</em>"
 						);
 						return;
 				}
