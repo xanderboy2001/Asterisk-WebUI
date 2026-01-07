@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						if (selectedButton === btn) {
 								btn.classList.remove('selected');
 								selectedButton = null;
-								scriptNameLabel.textContent = `
+								scriptNameLabel.innerHTML = `
 										<span><strong>Script Name:</strong> No script selected</span>
 								`;
 								helpCard.textContent = "Help Card";
