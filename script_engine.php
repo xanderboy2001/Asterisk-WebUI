@@ -291,18 +291,30 @@ function validate_input(string $input, array $rules = []): bool {
  */
 function run_script(string $script_name, array $scripts, ?string $input = null): string
 {
-		# Bypass this function for testing
-		return "This is where I'd put my output...";
-
-
     if (!array_key_exists($script_name, $scripts)) {
         return "Invalid script selected.";
     }
 
-    // Escape command to prevent arbitrary command execution
-    $command = escapeshellcmd($scripts[$script_name]);
+		$scriptDef = $scripts[$script_name];
+		$sanitized_inputs = [];
 
-    return shell_exec($command . " 2>&1");
+		foreach ($scriptDef['inputs'] as $index => $inputDef) {
+				$raw = $inputs[$index] ?? '';
+				$sanitized = sanitize_input($raw, $inputDef);
+
+				if (!validate_input($sanitized, $inputDef)) {
+						return "Invalid input at position $index: " . htmlspecialchars($raw);
+				}
+
+				$sanitized_inputs[] = $sanitized;
+		}
+
+		$cmd = escapeshellcmd($scriptDef['path']);
+		foreach ($sanitized_inputs as $arg) {
+				$cmd .= ' ' . escapeshellarg($arg);
+		}
+
+		return shell_exec($cmd . " 2>&1");
 }
 
 $output = '';
