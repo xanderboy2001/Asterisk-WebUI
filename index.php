@@ -35,6 +35,9 @@ include 'script_runner.php';
 								<div class="card-header">Input/Output</div>
 										<div class="card-content" id="io-output">
 												<span><strong>Script Name: </strong><span id="script-name">No script selected</span></span>
+												<div id="dynamic-inputs"></div>
+												<button id="run-script" disabled>Run Script</button>
+												<pre id="script-output"></pre>
 										</div>
 						</div>
 						<div class="cards help-card">
