@@ -60,6 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				const inputs = SCRIPT_DEFINITIONS[scriptName].inputs;
 
+				if (!inputs.length) {
+						ioCard.insertAdjacentHTML(
+								"beforeend",
+								"<em>No input required</em>
+						);
+						return;
+		}
+
 		buttons.forEach(btn => {
 				btn.addEventListener('click', () => {
 						if (selectedButton === btn) {
