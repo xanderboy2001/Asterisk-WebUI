@@ -244,6 +244,47 @@ $scripts = [
 		]
 ];
 
+function sanitize_input(string $input, array $rules = []): string {
+		$input = trim($input);
+		$input = stripslashes($input);
+		$input = htmlspecialchars($input);
+
+		if (isset($rules['type'])) {
+				switch ($rules['type']) {
+						case 'number':
+								$input = preg_replace('/\D/', '', $input);
+								break;
+						case 'mac':
+								$input = preg_replace('/[^0-9a-fA-F:]/', '', $input);
+								break
+				}
+		}
+
+		return $input;
+}
+
+function validate_input(string $input, array $rules = []): bool {
+		if (isset($rules['type'])) {
+				switch ($rules['type']) {
+						case 'number':
+								if (isset($rules['length']) && strlen($input) !== $rules['length']) {
+										return false;
+								}
+								if (!ctype_digit($input)) return false;
+								break;
+						case 'mac':
+								if (!preg_match('/^([0-9A-Fa-f]{2}[:-]?){5}[0-9A-Fa-f]{2}$/', $input)) {
+										return false;
+								}
+								break;
+						case 'text':
+								break;
+				}
+		}
+
+		return true;
+}
+
 /**
  * Validates script existence and executes it via shell.
  * Returns the output (stdout and stderr).
