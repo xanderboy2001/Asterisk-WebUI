@@ -20,11 +20,11 @@ include 'script_engine.php';
 						<div class="cards script-card">
 								<div class="card-header">Scripts</div>
 								<div class="card-content">
-										<form method="post" class="card-content" id="script-form">
-												<?php foreach ($scripts as $name => $path): ?>
-												<button class="script-button" type="button"
-																data-script="<?php echo htmlspecialchars($name); ?>"
-																data-path="<?php echo htmlspecialchars($path['path']); ?>">
+										<form id="script-form">
+												<?php foreach ($scripts as $name => $info): ?>
+												<button type="button" class="script-button" 
+																data-script="<?php echo $name; ?>"
+																data-path="<?php echo $info['path']; ?>">
 																<?php echo htmlspecialchars($name); ?>
 														</button>
 												<?php endforeach ?>
@@ -42,40 +42,24 @@ include 'script_engine.php';
 						</div>
 						<div class="cards help-card">
 								<div class="card-header">Help</div>
-										<div class="card-content">
-												Help Card
-										</div>
+								<div class="card-content">Help Card</div>
 						</div>
 				</div>
 		</div>
 <script>
 const SCRIPT_DEFINITIONS = <?php echo json_encode($scripts, JSON_HEX_TAG | JSON_HEX_APOS); ?>;
-</script>
-<script>
 document.addEventListener('DOMContentLoaded', () => {
 		const buttons = document.querySelectorAll('.script-button');
 		const scriptNameLabel = document.getElementById('script-name');
 		const helpCard = document.querySelector(".help-card .card-content");
 		const ioCard = document.getElementById("io-output");
-		let selectedButton = null;
+		const runButton = document.getElementById("run-script");
+		let currentScript = null;
 
 		function renderInputs(scriptName) {
 				const scriptDef = SCRIPT_DEFINITIONS[scriptName];
-
-				ioCard.innerHTML = `
-						<span><strong>Script Name:</strong> ${scriptName}</span>
-						<div id="dynamic-inputs"></div>
-						<button id="run-script">Run Script</button>
-						<pre id="script-output"></pre>
-				`;
-
 				const inputsContainer = document.getElementById("dynamic-inputs");
-				const runButton = document.getElementById("run-script");
-
-				if (!SCRIPT_DEFINITIONS[scriptName]) {
-						console.error("Unknown script:", scriptName);
-						return;
-				}
+				inputsContainer.innerHTML = '';
 
 				if (!scriptDef.inputs.length) {
 						inputsContainer.innerHTML = "<em>No input required</em>"
@@ -84,77 +68,56 @@ document.addEventListener('DOMContentLoaded', () => {
 								const input = document.createElement("input");
 
 								input.dataset.index = index;
-								input.placeholder = def.placeholder ?? "";
-
-								if (def.is_extension) {
-										input.type = "text";
-										input.inputMode = "numeric";
-										input.pattern = "\\d{4}";
-										input.placeholder = "4-digit extension";
-								} else if (def.is_mac) {
-										input.type = "text";
-										input.pattern = "[0-9a-fA-f:]{12,17}";
-								}
-
+								input.type = def.type || 'text';
+								input.placeholder = def.placeholder || '';
+								if (def.type === 'number') input.inputMode = 'number';
 								inputsContainer.appendChild(input);
 						});
 				}
-
-				runButton.addEventListener("click", () => runScript(scriptName));
+				runButton.disabled = false;
 		}
 
+		runButton.addEventListener('click', () => {
+				if (!currentScript) return;
 
-		function runScript(scriptName) {
-				const inputs = Array.from(
-						document.querySelectorAll("#dynamic-inputs input")
-				).map(input => input.value);
+				const inputs = Array.from(document.querySelectorAll('#dynamic-inputs input'))
+														.map(input => input.value);
 
-				fetch("execute_script.php", {
-						method: "POST",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({
-								script: scriptName,
-								inputs: inputs
-						})
+				runButton.disabled = true;
+				fetch('script_engine.php', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ script: currentScript, inputs })
 				})
-				.then(res => res.text())
-				.then(output => {
-						document.getElementById("script-output").textContent = output;
+				.then(res => res.json())
+				.then(data => {
+						document.getElementById('script-output').textContent = data.success ? data.output : data.message;
 				})
 				.catch(err => {
-						document.getElementById("script-output").textContent =
-								"Error running script.";
+						document.getElementById('script-output').textContent = 'Error running script.';
 						console.error(err);
-				});
-		}
-								
+				})
+				.finally(() => runButton.disabled = false;);
+		});
 
 		buttons.forEach(btn => {
 				btn.addEventListener('click', () => {
-						if (selectedButton === btn) {
+						if (currentScript === btn.dataset.script) {
 								btn.classList.remove('selected');
-								selectedButton = null;
-								scriptNameLabel.innerHTML = `
-										<span><strong>Script Name:</strong> No script selected</span>
-								`;
-								helpCard.textContent = "Help Card";
+								currentScript = null;
+								scriptNameLabel.textContent = 'No script selected';
+								runButton.disabled = true;
 						} else {
-								if (selectedButton) selectedButton.classList.remove('selected');
-										btn.classList.add('selected');
-										selectedButton = btn;
-										const scriptName = btn.dataset.script;
-										scriptNameLabel.textContent = scriptName;
-										renderInputs(scriptName);
+								buttons.forEach(b => b.classList.remove('selected'));
+								btn.classList.add('selected');
+								currentScript = btn.dataset.script;
+								scriptNameLabel.textContent = currentScript;
+								renderInputs(currentScript);
 
-										fetch(`get_help.php?path=${encodeURIComponent(btn.dataset.path)}`)
-												.then(response => response.text())
-												.then(helpText => {
-														helpCard.textContent = helpText;
-												})
-												.catch(err => {
-														helpCard.textContent = "Error loading help.";
-														console.error(err);
-												});
+								fetch(`get_help.php?path=${encodeURIComponent(btn.dataset.path)}`)
+										.then(res => res.text())
+										.then(helpText => helpCard.textContent = helpText)
+										.catch(() => helpCard.textContent = 'Error loading help.');
 						}
 				});
 		});
