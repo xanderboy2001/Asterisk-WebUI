@@ -63,6 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				const inputs = SCRIPT_DEFINITIONS[scriptName].inputs;
 
+				if (!SCRIPT_DEFINITIONS[scriptName]) {
+						console.error("Unknown script:", scriptName);
+						return;
+				}
+
 				if (!inputs.length) {
 						ioCard.insertAdjacentHTML(
 								"beforeend",
