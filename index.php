@@ -66,7 +66,33 @@ document.addEventListener('DOMContentLoaded', () => {
 								"<em>No input required</em>
 						);
 						return;
+				}
+
+				inputs.forEach((def, index) => {
+						const wrapper = document.createElement("div");
+						wrapper.className = "input-group";
+
+						const input = document.createElement("input");
+						input.type = def.type;
+						input.placeholder = def.placeholder ?? "";
+						input.dataset.index = index;
+
+						if (def.is_extension) {
+								input.type = "text";
+								input.inputMode = "numeric";
+								input.pattern = "\\d{4}";
+								input.placeholder = "4-digit extension";
+						}
+
+						if (def.is_mac) {
+								input.pattern = "[0-9a-fA-f:]{12,17}";
+						}
+
+						wrapper.appendChild(input);
+						ioCard.appendChild(wrapper);
+				});
 		}
+								
 
 		buttons.forEach(btn => {
 				btn.addEventListener('click', () => {
