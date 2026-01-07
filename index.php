@@ -60,48 +60,47 @@ document.addEventListener('DOMContentLoaded', () => {
 		let selectedButton = null;
 
 		function renderInputs(scriptName) {
+				const scriptDef = SCRIPT_DEFINITIONS[scriptName];
+
 				ioCard.innerHTML = `
 						<span><strong>Script Name:</strong> ${scriptName}</span>
+						<div id="dynamic-inputs"></div>
+						<button id="run-script">Run Script</button>
+						<pre id="script-output"></pre>
 				`;
 
-				const inputs = SCRIPT_DEFINITIONS[scriptName].inputs;
+				const inputsContainer = document.getElementById("dynamic-inputs");
+				const runButton = document.getElementById("run-script");
 
 				if (!SCRIPT_DEFINITIONS[scriptName]) {
 						console.error("Unknown script:", scriptName);
 						return;
 				}
 
-				if (!inputs.length) {
-						ioCard.insertAdjacentHTML(
-								"beforeend",
-								"<em>No input required</em>"
-						);
-						return;
+				if (!scriptDef.inputs.length) {
+						inputsContainer.innerHTML = "<em>No input required</em>"
+				} else {
+						scriptDef.inputs.forEach((def, index) => {
+								const input = document.createElement("input");
+
+								input.dataset.index = index;
+								input.placeholder = def.placeholder ?? "";
+
+								if (def.is_extension) {
+										input.type = "text";
+										input.inputMode = "numeric";
+										input.pattern = "\\d{4}";
+										input.placeholder = "4-digit extension";
+								} else if (def.is_mac) {
+										input.type = "text";
+										input.pattern = "[0-9a-fA-f:]{12,17}";
+								}
+
+								inputsContainer.appendChild(input);
+						});
 				}
 
-				inputs.forEach((def, index) => {
-						const wrapper = document.createElement("div");
-						wrapper.className = "input-group";
-
-						const input = document.createElement("input");
-						input.type = def.type;
-						input.placeholder = def.placeholder ?? "";
-						input.dataset.index = index;
-
-						if (def.is_extension) {
-								input.type = "text";
-								input.inputMode = "numeric";
-								input.pattern = "\\d{4}";
-								input.placeholder = "4-digit extension";
-						}
-
-						if (def.is_mac) {
-								input.pattern = "[0-9a-fA-f:]{12,17}";
-						}
-
-						wrapper.appendChild(input);
-						ioCard.appendChild(wrapper);
-				});
+				runButton.addEventListener("click", () => runScript(scriptName));
 		}
 								
 
