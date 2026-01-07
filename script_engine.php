@@ -323,7 +323,7 @@ function validate_input(string $input, array $rules = []): bool {
  */
 function run_script(string $script_name, array $scripts, array $input = []): string
 {
-    if (!array_key_exists($script_name, $scripts)) {
+    if (!isset($script_name, $scripts)) {
         return "Invalid script selected.";
     }
 
@@ -353,16 +353,19 @@ $output = '';
 
 // Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Run the selected script
-    if (isset($_POST['execute_script'])) {
-				if (isset($_POST['script_selection'])) {
-						$selected = $_POST['script_selection'];
-						$output = run_script($selected, $scripts, null);
-				}
-    }
-    // Clear the output display
-    if (isset($_POST['reset'])) {
-        $output = '';
-    }
+		$data = json_decode(file_get_contents('php://input'), true);
+		$script_name = $data['script'] ?? null;
+		$inputs = $data['inputs'] ?? [];
+
+		header('Content-Type: application/json');
+
+		if (!$script_name || !isset($scripts[$script_name])) {
+				echo json_encode(['success' => false, 'message' => 'Invalid script.']);
+				exit;
+		}
+
+		$output = run_script($script_name, $scripts, $inputs);
+		echo json_encode(['success' => true, 'output' => $output]);
+		exit;
 }
 ?>
