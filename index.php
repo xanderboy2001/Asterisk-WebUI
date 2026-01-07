@@ -24,7 +24,7 @@ include 'script_runner.php';
 												<?php foreach ($scripts as $name => $path): ?>
 												<button class="script-button" type="button"
 																data-script="<?php echo htmlspecialchars($name); ?>"
-																data-path="<?php echo htmlspecialchars($path); ?>">
+																data-path="<?php echo htmlspecialchars($path['path']); ?>">
 																<?php echo htmlspecialchars($name); ?>
 														</button>
 												<?php endforeach ?>
@@ -35,8 +35,6 @@ include 'script_runner.php';
 								<div class="card-header">Input/Output</div>
 										<div class="card-content" id="io-output">
 												<span><strong>Script Name: </strong><span id="script-name">No script selected</span></span>
-												<span><label for="text-input">Input:</label>
-												<input type="text" id="text-input" name="text-input" /></span>
 										</div>
 						</div>
 						<div class="cards help-card">
@@ -80,6 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				});
 		});
 });
+</script>
+<script>
+const SCRIPT_DEFINITIONS = <?php echo json_encode($scripts, JSON_HEX_TAG | JSON_HEX_APOS); ?>;
 </script>
 <script id="__bs_script__">//<![CDATA[
   (function() {

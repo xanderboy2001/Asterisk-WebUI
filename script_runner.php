@@ -5,31 +5,275 @@ $scripts_path = 'scripts';
 
 // Array mapping GUI button labels to specific shell script paths
 $scripts = [
-    'Reload' => "$scripts_path/asterisk_reload.sh",
-    'Check Free Extensions' => "$scripts_path/check_free_exten.sh",
-    'Check MAC Address' => "$scripts_path/check_mac.sh",
-    'Delete Extensions' => "$scripts_path/delete_exten.sh",
-    'Delete Phone' => "$scripts_path/delete_phone.sh",
-    'Delete Voicemail' => "$scripts_path/delete_voicemail.sh",
-    'Edit System Files' => "$scripts_path/edit_system_files.sh",
-    'Generate Phone List' => "$scripts_path/generate_phone_list.sh",
-    'Reboot All Phones' => "$scripts_path/reboot_all_phones.sh",
-    'Reboot Single Phone' => "$scripts_path/reboot_phone.sh",
-    'Redirect Extension' => "$scripts_path/redirect_exten.sh",
-    'Refresh Phone Config' => "$scripts_path/refresh_phone_config.sh",
-    'Register x7912' => "$scripts_path/register_7912.sh",
-    'Register x7960' => "$scripts_path/register_7960.sh",
-    'Remove Config' => "$scripts_path/remove_config.sh",
-    'Replace x7940' => "$scripts_path/replace_7940.sh",
-    'Replace Phone' => "$scripts_path/replace_phone.sh",
-    'Re-Register x7960' => "$scripts_path/reregister_7960.sh",
-    'Reset Voicemail Password' => "$scripts_path/reset_vm_password.sh",
-    'Unregister Phone' => "$scripts_path/unregister_phone.sh",
-    'View Active Calls' => "$scripts_path/view_active_calls.sh",
-    'View Call History' => "$scripts_path/view_call_history.sh",
-    'View Extension Dialplan' => "$scripts_path/view_exten_dialplan.sh",
-    'View Offline Phones' => "$scripts_path/view_offline_phones.sh",
-    'Delete Voicemail Config' => "$scripts_path/VM_delete.sh"
+		'Reload' => [
+				"path" => "$scripts_path/asterisk_reload.sh",
+				"inputs" => []
+		],
+		'Check Free Extensions' => [
+				"path" => "$scripts_path/check_free_exten.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		],
+		'Check MAC Address' => [
+				"path" => "$scripts_path/check_mac.sh",
+				"inputs" => [
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "MAC address"
+						]
+				]
+		],
+		'Delete Extensions' => [
+				"path" => "$scripts_path/delete_exten.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		],
+		'Delete Phone' => [
+				"path" => "$scripts_path/delete_phone.sh",
+				"inputs" => [
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "MAC address"
+						]
+				]
+		],
+		'Delete Voicemail' => [
+				"path" => "$scripts_path/delete_voicemail.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		],
+		'Generate Phone List' => [
+				"path" => "$scripts_path/generate_phone_list.sh",
+				"inputs" => []
+		],
+		'Reboot All Phones' => [
+				"path" => "$scripts_path/reboot_all_phones.sh",
+				"inputs" => []
+		],
+		'Reboot Single Phone' => [
+				"path" => "$scripts_path/reboot_phone.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		],
+		'Redirect Extension' => [
+				"path" => "$scripts_path/redirect_exten.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Phone extension to redirect"
+						],
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Phone extension to redirect to"
+						]
+				]
+		],
+		'Refresh Phone Config' => [
+				"path" => "$scripts_path/refresh_phone_config.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		],
+		'Register x7912' => [
+				"path" => "$scripts_path/register_7912.sh",
+				"inputs" => [
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "MAC address of new phone"
+						],
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension of new phone"
+						],
+						[
+								"type" => "text",
+								"placeholder" => "Name of phone owner"
+						]
+				]
+		],
+		'Register x7960' => [
+				"path" => "$scripts_path/register_7960.sh",
+				"inputs" => [
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "MAC address of new phone"
+						],
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension of new phone"
+						],
+						[
+								"type" => "text",
+								"placeholder" => "Name of phone owner"
+						],
+						[
+								"type" => "text",
+								"placeholder" => "Email of phone owner"
+						]
+				]
+		],
+		'Remove Config' => [
+				"path" => "$scripts_path/remove_config.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						],
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "MAC Address"
+						]
+				]
+		],
+		'Replace x7940' => [
+				"path" => "$scripts_path/replace_7940.sh",
+				"inputs" => [
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "Old MAC address"
+						],
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "New MAC address"
+						]
+				]
+		],
+		'Replace Phone' => [
+				"path" => "$scripts_path/replace_phone.sh",
+				"inputs" => [
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "Old MAC address"
+						],
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "New MAC address"
+						]
+				]
+		],
+		'Re-Register x7960' => [
+				"path" => "$scripts_path/reregister_7960.sh",
+				"inputs" => [
+						[
+								"type" => "text",
+								"is_mac" => true,
+								"placeholder" => "MAC address of phone"
+						],
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension of phone"
+						],
+						[
+								"type" => "text",
+								"placeholder" => "Name of phone owner"
+						],
+						[
+								"type" => "text",
+								"placeholder" => "Email of phone owner"
+						]
+				]
+		],
+		'Reset Voicemail Password' => [
+				"path" => "$scripts_path/reset_vm_password.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						],
+						[
+								"type" => "number",
+								"placeholder" => "New PIN"
+						]
+				]
+		],
+		'Unregister Phone' => [
+				"path" => "$scripts_path/unregister_phone.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		],
+		'View Active Calls' => [
+				"path" => "$scripts_path/view_active_calls.sh",
+				"inputs" => []
+		],
+		'View Call History' => [
+				"path" => "$scripts_path/view_call_history.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		],
+		'View Extension Dialplan' => [
+				"path" => "$scripts_path/view_exten_dialplan.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		],
+		'View Offline Phones' => [
+				"path" => "$scripts_path/view_offline_phones.sh",
+				"inputs" => []
+		],
+		'Delete Voicemail Config' => [
+				"path" => "$scripts_path/VM_delete.sh",
+				"inputs" => [
+						[
+								"type" => "number",
+								"is_extension" => true,
+								"placeholder" => "Extension number"
+						]
+				]
+		]
 ];
 
 /**
