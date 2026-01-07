@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Checks whether a given extension is defined in Asterisk's dialplan.
@@ -16,6 +17,13 @@
 # Notes:
 # - Does not account for includes, pattern matches (_X., _NXX), or generated dialplans.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define the path to extensions.conf
 EXTENSIONS_CONF="/etc/asterisk/extensions.conf"

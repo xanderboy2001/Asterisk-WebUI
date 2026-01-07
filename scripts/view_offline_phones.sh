@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # This script lists all SIP devices that currently have an unknown status in Asterisk.
@@ -10,6 +11,13 @@
 # - Prints a message if no devices have unknown status.
 # - Waits for the user to press Enter before exiting.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Clear the terminal
 clear

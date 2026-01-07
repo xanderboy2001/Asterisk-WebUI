@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # This script resets the voicemail PIN for a specified extension.
@@ -10,6 +11,13 @@
 # - Updates only the PIN field for the specified extension.
 # - Reloads Asterisk voicemail configuration.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define the path to voicemail.conf
 VOICEMAIL_CONF="/etc/asterisk/voicemail.conf"

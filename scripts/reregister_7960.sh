@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Re-creates a SEP file for a 7965 IP Phone without modifying Asterisk config files.
@@ -14,6 +15,13 @@
 # - Reloads Asterisk SIP, dialplan, and voicemail services.
 # - Ensures TFTP directory ownership is set to user 'tftp'.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define the path where the configuration files are stored
 TFTPBOOT_PATH="/var/lib/tftpboot"

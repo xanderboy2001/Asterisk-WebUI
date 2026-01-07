@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Deletes a voicemail box from Asterisk's voicemail.conf.
@@ -14,6 +15,13 @@
 # - Cleans up any blank lines left behind.
 # - Optionally reloads Asterisk if uncommented.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define the path to voicemail.conf
 VOICEMAIL_CONF="/etc/asterisk/voicemail.conf"

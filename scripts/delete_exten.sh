@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Deletes a specified extension from Asterisk's extensions.conf.
@@ -14,6 +15,13 @@
 # - Removes any resulting blank lines.
 # - Optionally reloads Asterisk if uncommented.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define the path to the extensions.conf file
 EXTENSIONS_CONF="/etc/asterisk/extensions.conf"

@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Removes a phone or extension from Asterisk configuration files.
@@ -16,6 +17,13 @@
 # - Cleans up multi-device lines and leftover formatting in extensions.conf.
 # - Reloads Asterisk dialplan, SIP, and voicemail configurations after removal.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define file paths
 EXTENSIONS_CONF="/etc/asterisk/extensions.conf"

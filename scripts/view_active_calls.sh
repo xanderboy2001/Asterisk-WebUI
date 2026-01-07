@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # This script shows detailed information about any active calls in Asterisk.
@@ -9,6 +10,13 @@
 # - Displays a message if no active calls are present.
 # - Waits for the user to press Enter before exiting.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Clear the terminal
 clear

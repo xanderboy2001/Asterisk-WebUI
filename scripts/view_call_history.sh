@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # This script displays the call log for a specified Asterisk extension.
@@ -10,6 +11,13 @@
 # - Displays date/time, source, destination, duration, and call status.
 # - Exits with a message if the CDR file is missing or no extension is provided.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Location of the Asterisk CDR CSV file
 CDR_FILE="/var/log/asterisk/cdr-csv/Master.csv"

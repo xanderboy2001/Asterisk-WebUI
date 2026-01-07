@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Displays a menu to open Asterisk configuration files in vim.
@@ -12,6 +13,13 @@
 # - Opens the selected file in vim if it exists.
 # - Loops until the user chooses to quit.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define file paths
 SIP_CONF="/etc/asterisk/sip.conf"

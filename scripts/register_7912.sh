@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Registers a Cisco 7965 IP phone by creating a SEP/gk configuration file
@@ -16,6 +17,13 @@
 # - Appends SIP peer and dialplan entries to sip.conf and extensions.conf.
 # - Updates permissions and reloads Asterisk SIP and dialplan configurations.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define the path where the configuration files are stored
 TFTPBOOT_PATH="/var/lib/tftpboot"

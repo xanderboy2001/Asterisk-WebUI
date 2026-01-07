@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Removes a phone from Asterisk SIP configuration and provisioning files.
@@ -14,6 +15,13 @@
 # - Deletes the corresponding .cnf.xml file if it exists.
 # - Optionally reloads Asterisk if uncommented.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define file paths
 SIP_CONF="/etc/asterisk/sip.conf"

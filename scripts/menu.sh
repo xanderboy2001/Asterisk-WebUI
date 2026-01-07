@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Displays a menu of all scripts in the current directory and allows the user to run them.
@@ -13,6 +14,13 @@
 # - Executes the selected script using bash.
 # - Loops until the user chooses to quit.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 clear
 BACKGROUND="\033[44m"  # Dark Blue Background

@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Searches Asterisk and phone provisioning files for a specified MAC address.
@@ -16,6 +17,13 @@
 # Notes:
 # - Performs simple string matching; no validation or normalization of MAC format.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 
 SIP_CONF="/etc/asterisk/sip.conf"

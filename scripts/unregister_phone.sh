@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # This script deletes a phone from the Asterisk configuration.
@@ -12,6 +13,13 @@
 # - Does not modify voicemail.conf.
 # - Optionally reloads Asterisk configuration.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define file paths
 EXTENSIONS_CONF="/etc/asterisk/extensions.conf"

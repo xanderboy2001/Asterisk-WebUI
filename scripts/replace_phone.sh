@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Replaces a phone in Asterisk by updating its MAC address.
@@ -15,6 +16,13 @@
 # - Updates SIP and extensions configuration with new MAC (SEP-prefixed).
 # - Reloads Asterisk dialplan, SIP, and voicemail configurations.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define file paths
 EXTENSIONS_CONF="/etc/asterisk/extensions.conf"

@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Lists all active SIP extensions and their CallerID names from sip.conf.
@@ -12,6 +13,13 @@
 # - Prints the extension number and CallerID name in a table format.
 # - Handles all entries sequentially; ignores sections without callerid.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Define the path to sip.conf
 SIP_CONF="/etc/asterisk/sip.conf"

@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Creates a SEP configuration file for a Cisco 7965 IP phone.
@@ -16,6 +17,13 @@
 # - Sets TFTP directory permissions and reloads dialplan and SIP configs.
 # - Optionally reboots the phone using a Python script if available.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
 
 # Enable debugging and exit on error
 set -ex

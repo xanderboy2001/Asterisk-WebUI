@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 # --- HELP ---
 # Reloads key Asterisk configuration components without restarting the service.
@@ -21,6 +22,14 @@
 # - Applies config changes without a full restart.
 # - Existing calls are generally preserved; new calls use updated configs.
 # ------------
+
+if [[ "${TESTING:-0}" == "1" ]]; then
+	echo "[TEST MODE]"
+	echo "Script: $0"
+	echo "Arguments: $*"
+	exit 0
+fi
+
 
 # Check if Asterisk is running
 if ! pgrep -x "asterisk" > /dev/null; then
