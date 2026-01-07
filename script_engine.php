@@ -284,40 +284,66 @@ function sanitize_input(string $input, array $rules = []): string {
 		$input = stripslashes($input);
 		$input = htmlspecialchars($input);
 
+		if(!empty($rules['is_extension'])) {
+				return preg_replace('/\D/', '', $input);
+		}
+
+		if(!empty($rules['is_mac'])) {
+				return preg_replace('/[^0-9a-fA-F:]/', '', $input);
+		}
+
 		if (isset($rules['type'])) {
 				switch ($rules['type']) {
 						case 'number':
 								$input = preg_replace('/\D/', '', $input);
 								break;
-						case 'mac':
-								$input = preg_replace('/[^0-9a-fA-F:]/', '', $input);
-								break;
+						case 'text':
+						default:
+								return htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
 				}
 		}
 
-		return $input;
+		return htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
 }
 
-function validate_input(string $input, array $rules = []): bool {
+function validate_input(string $input, array $rules = []): ?string {
+
+		if ($input === '') {
+				return "Input is required";
+		}
+
+		if (!empty($rules['is_extension'])) {
+				if (!ctype_digit($input)) {
+						return "Extension must contain only digits.";
+				}
+
+				if (isset($rules['length']) && strlen($input) !== $rules['length']) {
+						return "Extension must be exactly {$rules['length']} digits.";
+				}
+
+				return null;
+		}
+
+		if (!empty($rules['is_mac'])) {
+				if (!preg_match('/^([0-9A-Fa-f]{2}[:-]?){5}[0-9A-Fa-f]{2}$/', $input)) {
+						return "Invalid MAC address format.";
+				}
+
+				return null;
+		}
+
 		if (isset($rules['type'])) {
 				switch ($rules['type']) {
 						case 'number':
-								if (!ctype_digit($input)) return false;
-								if (isset($rules['length']) && strlen($input) !== $rules['length']) {
-										return false;
-								}
-								break;
-						case 'mac':
-								if (!preg_match('/^([0-9A-Fa-f]{2}[:-]?){5}[0-9A-Fa-f]{2}$/', $input)) {
-										return false;
-								}
-								break;
+								return ctype_digit($input)
+										? null
+										: "Must contian only numbers.";
 						case 'text':
-								break;
+								return null;
 				}
 		}
 
-		return true;
+		return null;
 }
 
 /**
