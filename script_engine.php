@@ -256,7 +256,7 @@ function sanitize_input(string $input, array $rules = []): string {
 								break;
 						case 'mac':
 								$input = preg_replace('/[^0-9a-fA-F:]/', '', $input);
-								break
+								break;
 				}
 		}
 
