@@ -105,7 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
 								if (selectedButton) selectedButton.classList.remove('selected');
 										btn.classList.add('selected');
 										selectedButton = btn;
-										scriptNameLabel.textContent = btn.dataset.script;
+										const scriptName = btn.dataset.script;
+										scriptNameLabel.textContent = scriptName;
+										renderInputs(scriptName);
 
 										fetch(`get_help.php?path=${encodeURIComponent(btn.dataset.path)}`)
 												.then(response => response.text())
