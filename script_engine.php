@@ -1,4 +1,7 @@
 <?php
+
+$testing = true;
+
 // Configuration: Define script directory (Development vs Production paths)
 #$scripts_path = '/var/lib/tftpboot';
 $scripts_path = 'scripts';
@@ -341,7 +344,8 @@ function run_script(string $script_name, array $scripts, array $inputs = []): st
 				$sanitized_inputs[] = $sanitized;
 		}
 
-		$cmd = escapeshellcmd($scriptDef['path']);
+		$env = $testing ? 'TESTING=1 ' : '';
+		$cmd = $env . escapeshellcmd($scriptDef['path']);
 		foreach ($sanitized_inputs as $arg) {
 				$cmd .= ' ' . escapeshellarg($arg);
 		}
