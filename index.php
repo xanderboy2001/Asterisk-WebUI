@@ -50,7 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		const buttons = document.querySelectorAll('.script-button');
 		const scriptNameLabel = document.getElementById('script-name');
 		const helpCard = document.querySelector(".help-card .card-content");
+		const ioCard = document.getElementById("io-output");
 		let selectedButton = null;
+
+		function renderInputs(scriptName) {
+				ioCard.innerHTML = `
+						<span><strong>Script Name:</strong> ${scriptName}</span>
+				`;
+
+				const inputs = SCRIPT_DEFINITIONS[scriptName].inputs;
 
 		buttons.forEach(btn => {
 				btn.addEventListener('click', () => {
