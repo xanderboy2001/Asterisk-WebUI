@@ -13,9 +13,7 @@ $scripts = [
 				"path" => "$scripts_path/check_free_exten.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		],
@@ -33,9 +31,7 @@ $scripts = [
 				"path" => "$scripts_path/delete_exten.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		],
@@ -53,9 +49,7 @@ $scripts = [
 				"path" => "$scripts_path/delete_voicemail.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		],
@@ -71,9 +65,7 @@ $scripts = [
 				"path" => "$scripts_path/reboot_phone.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		],
@@ -81,14 +73,10 @@ $scripts = [
 				"path" => "$scripts_path/redirect_exten.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Phone extension to redirect"
 						],
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Phone extension to redirect to"
 						]
 				]
 		],
@@ -96,9 +84,7 @@ $scripts = [
 				"path" => "$scripts_path/refresh_phone_config.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		],
@@ -111,9 +97,7 @@ $scripts = [
 								"placeholder" => "MAC address of new phone"
 						],
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension of new phone"
 						],
 						[
 								"type" => "text",
@@ -130,9 +114,7 @@ $scripts = [
 								"placeholder" => "MAC address of new phone"
 						],
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension of new phone"
 						],
 						[
 								"type" => "text",
@@ -148,9 +130,7 @@ $scripts = [
 				"path" => "$scripts_path/remove_config.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						],
 						[
 								"type" => "text",
@@ -198,9 +178,7 @@ $scripts = [
 								"placeholder" => "MAC address of phone"
 						],
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension of phone"
 						],
 						[
 								"type" => "text",
@@ -216,9 +194,7 @@ $scripts = [
 				"path" => "$scripts_path/reset_vm_password.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						],
 						[
 								"type" => "number",
@@ -230,9 +206,7 @@ $scripts = [
 				"path" => "$scripts_path/unregister_phone.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		],
@@ -244,9 +218,7 @@ $scripts = [
 				"path" => "$scripts_path/view_call_history.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		],
@@ -254,9 +226,7 @@ $scripts = [
 				"path" => "$scripts_path/view_exten_dialplan.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		],
@@ -268,9 +238,7 @@ $scripts = [
 				"path" => "$scripts_path/VM_delete.sh",
 				"inputs" => [
 						[
-								"type" => "text",
                 "is_extension" => true,
-								"placeholder" => "Extension number"
 						]
 				]
 		]
