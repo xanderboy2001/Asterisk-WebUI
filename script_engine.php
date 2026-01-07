@@ -13,7 +13,9 @@ $scripts = [
 				"path" => "$scripts_path/check_free_exten.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -31,7 +33,9 @@ $scripts = [
 				"path" => "$scripts_path/delete_exten.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -49,7 +53,9 @@ $scripts = [
 				"path" => "$scripts_path/delete_voicemail.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -65,7 +71,9 @@ $scripts = [
 				"path" => "$scripts_path/reboot_phone.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -73,10 +81,14 @@ $scripts = [
 				"path" => "$scripts_path/redirect_exten.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						],
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -84,7 +96,9 @@ $scripts = [
 				"path" => "$scripts_path/refresh_phone_config.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -97,7 +111,9 @@ $scripts = [
 								"placeholder" => "MAC address of new phone"
 						],
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						],
 						[
 								"type" => "text",
@@ -114,7 +130,9 @@ $scripts = [
 								"placeholder" => "MAC address of new phone"
 						],
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						],
 						[
 								"type" => "text",
@@ -130,7 +148,9 @@ $scripts = [
 				"path" => "$scripts_path/remove_config.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						],
 						[
 								"type" => "text",
@@ -178,7 +198,9 @@ $scripts = [
 								"placeholder" => "MAC address of phone"
 						],
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						],
 						[
 								"type" => "text",
@@ -194,7 +216,9 @@ $scripts = [
 				"path" => "$scripts_path/reset_vm_password.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						],
 						[
 								"type" => "number",
@@ -206,7 +230,9 @@ $scripts = [
 				"path" => "$scripts_path/unregister_phone.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -218,7 +244,9 @@ $scripts = [
 				"path" => "$scripts_path/view_call_history.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -226,7 +254,9 @@ $scripts = [
 				"path" => "$scripts_path/view_exten_dialplan.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		],
@@ -238,7 +268,9 @@ $scripts = [
 				"path" => "$scripts_path/VM_delete.sh",
 				"inputs" => [
 						[
-                "is_extension" => true,
+                "type" => "number",
+								"is_extension" => true,
+								"length" => 4
 						]
 				]
 		]
