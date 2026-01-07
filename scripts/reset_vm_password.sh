@@ -12,6 +12,8 @@ set -euo pipefail
 # - Reloads Asterisk voicemail configuration.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

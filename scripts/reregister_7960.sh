@@ -16,6 +16,8 @@ set -euo pipefail
 # - Ensures TFTP directory ownership is set to user 'tftp'.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

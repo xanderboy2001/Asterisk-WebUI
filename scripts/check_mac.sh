@@ -18,6 +18,8 @@ set -euo pipefail
 # - Performs simple string matching; no validation or normalization of MAC format.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

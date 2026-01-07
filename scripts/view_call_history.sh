@@ -12,6 +12,8 @@ set -euo pipefail
 # - Exits with a message if the CDR file is missing or no extension is provided.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

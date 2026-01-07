@@ -23,6 +23,8 @@ set -euo pipefail
 # - Existing calls are generally preserved; new calls use updated configs.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

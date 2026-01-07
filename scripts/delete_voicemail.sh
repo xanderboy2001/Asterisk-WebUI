@@ -16,6 +16,8 @@ set -euo pipefail
 # - Optionally reloads Asterisk if uncommented.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

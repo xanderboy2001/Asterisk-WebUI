@@ -5,6 +5,8 @@ set -euo pipefail
 # This script redirects one extension to another.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

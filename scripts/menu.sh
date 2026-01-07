@@ -15,6 +15,8 @@ set -euo pipefail
 # - Loops until the user chooses to quit.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

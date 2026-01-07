@@ -11,6 +11,8 @@ set -euo pipefail
 # - Waits for the user to press Enter before exiting.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

@@ -18,6 +18,8 @@ set -euo pipefail
 # - Reloads Asterisk SIP, dialplan, and voicemail configurations.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

@@ -3,6 +3,8 @@ set -euo pipefail
 
 # --- HELP ---# This script deletes a voicemail configuration for a specified extension from Asterisk's voicemail.conf.## Inputs / Behavior:# - Prompts the user for the extension whose voicemail box should be deleted.# - Backs up /etc/asterisk/voicemail.conf before making changes.# - Searches for the specified extension in voicemail.conf and deletes it if found.# - Prints a message if the extension is not found.# - Reloads Asterisk voicemail configuration if desired (command commented out by default).# ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

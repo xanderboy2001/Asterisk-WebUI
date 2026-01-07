@@ -14,6 +14,8 @@ set -euo pipefail
 # - Handles all entries sequentially; ignores sections without callerid.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"

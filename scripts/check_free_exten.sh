@@ -18,6 +18,8 @@ set -euo pipefail
 # - Does not account for includes, pattern matches (_X., _NXX), or generated dialplans.
 # ------------
 
+source ./input_validation.sh
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"
