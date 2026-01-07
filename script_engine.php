@@ -289,7 +289,7 @@ function validate_input(string $input, array $rules = []): bool {
  * Validates script existence and executes it via shell.
  * Returns the output (stdout and stderr).
  */
-function run_script(string $script_name, array $scripts, ?string $input = null): string
+function run_script(string $script_name, array $scripts, array $input = []): string
 {
     if (!array_key_exists($script_name, $scripts)) {
         return "Invalid script selected.";
