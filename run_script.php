@@ -1,5 +1,5 @@
 <?php
-include 'script_engine.php'
+include 'script_engine.php';
 // Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$data = json_decode(file_get_contents('php://input'), true);

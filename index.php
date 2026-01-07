@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		const buttons = document.querySelectorAll('.script-button');
 		const scriptNameLabel = document.getElementById('script-name');
 		const helpCard = document.querySelector(".help-card .card-content");
-		const ioCard = document.getElementById("io-output");
 		const runButton = document.getElementById("run-script");
 		let currentScript = null;
 
@@ -70,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								input.dataset.index = index;
 								input.type = def.type || 'text';
 								input.placeholder = def.placeholder || '';
-								if (def.type === 'number') input.inputMode = 'number';
+								if (def.type === 'number') input.inputMode = 'numeric';
 								inputsContainer.appendChild(input);
 						});
 				}
@@ -84,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 														.map(input => input.value);
 
 				runButton.disabled = true;
-				fetch('script_engine.php', {
+				fetch('run_script.php', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify({ script: currentScript, inputs })
@@ -97,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						document.getElementById('script-output').textContent = 'Error running script.';
 						console.error(err);
 				})
-				.finally(() => runButton.disabled = false;);
+				.finally(() => runButton.disabled = false);
 		});
 
 		buttons.forEach(btn => {
