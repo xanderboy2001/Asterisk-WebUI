@@ -102,6 +102,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				runButton.addEventListener("click", () => runScript(scriptName));
 		}
+
+
+		function runScript(scriptName) {
+				const inputs = Array.from(
+						document.querySelectorAll("#dynamic-inputs input")
+				).map(input => input.value);
+
+				fetch("run_script.php", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+								script: scriptName,
+								inputs: inputs
+						})
+				})
+				.then(res => res.text())
+				.then(output => {
+						document.getElementById("script-output").textContent = output;
+				})
+				.catch(err => {
+						document.getElementById("script-output").textContent =
+								"Error running script.";
+						console.error(err);
+				});
+		}
 								
 
 		buttons.forEach(btn => {
