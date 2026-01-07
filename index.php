@@ -1,6 +1,6 @@
 <?php
 // Include the configuration and logic handler
-include 'script_runner.php';
+include 'script_engine.php';
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						document.querySelectorAll("#dynamic-inputs input")
 				).map(input => input.value);
 
-				fetch("run_script.php", {
+				fetch("execute_script.php", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
