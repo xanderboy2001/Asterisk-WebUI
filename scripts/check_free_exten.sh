@@ -20,6 +20,8 @@ set -euo pipefail
 
 source ./input_validation.sh
 
+[ "$#" -eq 1 ] || quit_error "1 argument required, $# provided"
+
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
 	echo "Script: $0"
