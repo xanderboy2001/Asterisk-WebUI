@@ -128,6 +128,21 @@ See the [open issues](https://github.com/xanderboy2001/asterisk-webui/issues) fo
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Contributing
+
+Any contributions to this project are **greatly appreciated**.
+
+If you have any suggestions, please fork the repo and make a pull request. You can also just open an issue with the tag "enhancement".
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some amazing feature!'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/xanderboy2001/asterisk-webui.svg?style=for-the-badge
