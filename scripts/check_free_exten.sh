@@ -20,8 +20,9 @@ set -euo pipefail
 
 source ./input_validation.sh
 
-check_nro_args --expected 1 --actual "$#"
-validate_extension $1
+check_nro_args --expected "1" --actual "$#"
+validate_extension "$1"
+extension="$1"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
@@ -38,9 +39,6 @@ if [ ! -f "$EXTENSIONS_CONF" ]; then
     echo "Error: $EXTENSIONS_CONF not found."
     exit 1
 fi
-
-# Ask the user for the extension to check
-read -p "Enter the extension you want to check: " extension
 
 # Check if the extension is present in the extensions.conf file
 if grep -q "exten => $extension" $EXTENSIONS_CONF; then
