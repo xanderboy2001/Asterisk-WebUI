@@ -20,7 +20,7 @@ set -euo pipefail
 
 source ./input_validation.sh
 
-[ "$#" -eq 1 ] || quit_error "1 argument required, $# provided"
+check_nro_args --expected 1 --actual "$#"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
