@@ -61,6 +61,9 @@ It dynamically generates input fields to collect the arguments for the scripts.
 ### Built with
 
 * [![PHP][PHP.js]][PHP-url]
+* [![HTML][HTML.js]][HTML-url]
+* [![JavaScript][JavaScript-js]][JavaScript-url]
+* [![Bash][Bash-js]][Bash-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -91,3 +94,9 @@ This guide assumes you are using an Ubuntu (or other Debian-based) distrubution.
 <!-- Shields.io badges -->
 [PHP.js]: https://img.shields.io/badge/php-%23777BB4.svg?&logo=php&logoColor=white
 [PHP-url]: https://www.php.net
+[HTML.js]: https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white
+[HTML-url]: https://en.wikipedia.org/wiki/HTML
+[JavaScript-js]: https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000
+[JavaScript-url]: https://en.wikipedia.org/wiki/JavaScript
+[Bash-js]: https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=fff
+[Bash-url]: https://en.wikipedia.org/wiki/Bash_(Unix_shell)
