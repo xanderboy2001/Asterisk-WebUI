@@ -21,6 +21,7 @@ set -euo pipefail
 source ./input_validation.sh
 
 check_nro_args --expected 1 --actual "$#"
+validate_extension $1
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
