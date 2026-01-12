@@ -17,6 +17,9 @@ set -euo pipefail
 # ------------
 
 source ./input_validation.sh
+check_nro_args --expected "1" --actual "$#"
+validate_extension $1
+extension="$1"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
@@ -36,9 +39,6 @@ fi
 
 # Backup the extensions.conf file before modifying it
 cp $EXTENSIONS_CONF $BACKUP_DIR/extensions.conf.bak_$(date +%F_%T)
-
-# Ask the user for the extension to delete
-read -p "Enter the extension you want to delete: " extension
 
 # Check if the extension exists in extensions.conf
 if grep -q "exten => $extension" $EXTENSIONS_CONF; then
