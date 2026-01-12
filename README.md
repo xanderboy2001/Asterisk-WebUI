@@ -150,6 +150,13 @@ If you have any suggestions, please fork the repo and make a pull request. You c
 </a>
 
 
+## License
+
+Distributed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for more information
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/xanderboy2001/asterisk-webui.svg?style=for-the-badge
