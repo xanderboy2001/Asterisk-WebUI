@@ -17,6 +17,9 @@ set -euo pipefail
 # ------------
 
 source ./input_validation.sh
+check_nro_args --expected "1" --actual "$#"
+validate_mac_address "$1"
+mac_address="$1"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
@@ -37,9 +40,6 @@ fi
 
 # Backup sip.conf before modifying it
 cp $SIP_CONF $BACKUP_DIR/sip.conf.bak_$(date +%F_%T)
-
-# Prompt the user for the MAC address
-read -p "Enter the MAC address (in format AA:BB:CC:DD:EE:FF or AABBCCDDEEFF): " mac_address
 
 # Format the MAC address to remove colons if necessary
 mac_address_clean=${mac_address//:/}

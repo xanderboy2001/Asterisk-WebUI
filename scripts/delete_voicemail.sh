@@ -17,6 +17,9 @@ set -euo pipefail
 # ------------
 
 source ./input_validation.sh
+check_nro_args --expected "1" --actual "$#"
+validate_extension "$1"
+extension="$1"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
@@ -36,9 +39,6 @@ fi
 
 # Backup the voicemail.conf file before modifying it
 cp $VOICEMAIL_CONF $BACKUP_DIR/voicemail.conf.bak_$(date +%F_%T)
-
-# Ask the user for the extension to delete the voicemail box
-read -p "Enter the extension you want to delete the voicemail box for: " extension
 
 # Check if the voicemail box exists for the given extension
 if grep -q "^$extension =>" $VOICEMAIL_CONF; then
