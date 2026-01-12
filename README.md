@@ -157,6 +157,12 @@ Distributed under the GNU General Public License v3.0. See [LICENSE](LICENSE) fo
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Acknowledgements
+
+* [othneildrew/Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/xanderboy2001/asterisk-webui.svg?style=for-the-badge
