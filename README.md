@@ -106,6 +106,16 @@ wsl --install Ubuntu
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Usage
+Follow these instructions to run the site locally:
+  1. Run a PHP test server
+     ```sh
+     php -S localhost:8000
+     ```
+  2. Open your browser to http://localhost:8000
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
