@@ -91,6 +91,12 @@ wsl --install Ubuntu
   4. Launch Ubuntu from the Start Menu
 </details>
 
+**On your Ubuntu machine (or WSL), you will need to install the following:**
+* PHP
+  ```sh
+  sudo apt update && sudo apt install php
+  ```
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
