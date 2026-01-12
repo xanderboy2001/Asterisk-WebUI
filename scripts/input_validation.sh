@@ -64,23 +64,23 @@ check_nro_args() {
 }
 
 validate_extension() {
-		check_nro_args 1 $#
+		check_nro_args --expected 1 --actual $#
 		echo "$1" | grep -E -q '^[0-9]{4}$' || exit_error "4-digit numeric argument required, $1 provided"
 }
 
 validate_mac_address() {
-		check_nro_args 1 $#
+		check_nro_args --expected 1 --actual $#
 		echo "$1" | grep -E -q '^([0-9A-Fa-f]{12}|([0-9A-Fa-f]{2}([-:][0-9A-Fa-f]{2}){5}))$' \
 				|| exit_error "MAC address required. Accepted formats are \"ab-cd-ef-01-23-45\". Received: $1"
 }
 
 validate_name() {
-		check_nro_args 1 $#
+		check_nro_args --expected 1 --actual $#
 		echo "$1" | grep -E -q '^[A-Za-z]+ [A-Za-z]+$' \
 				|| exit_error "Name must be two alphabetic strings (e.g. 'John Smith'). Received $1"
 }
 
 validate_email() {
-		check_nro_args 1 $#
+		check_nro_args --expected 1 --actual $#
 		echo "$1" | grep -E -q '^[0-9A-Za-z]+@[A-Za-z]+\.[A-Za-z]+$' || echo "invalid"
 }
