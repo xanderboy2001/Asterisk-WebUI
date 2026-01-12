@@ -65,7 +65,7 @@ check_nro_args() {
 
 validate_extension() {
 		check_nro_args --expected 1 --actual $#
-		echo "$1" | grep -E -q '^[0-9]{4}$' || exit_error "4-digit numeric argument required, $1 provided"
+		echo "$1" | grep -E -q '^[0-9]{4}$' || exit_error "4-digit numeric argument required, '$1' provided"
 }
 
 validate_mac_address() {
