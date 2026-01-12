@@ -19,6 +19,9 @@ set -euo pipefail
 # ------------
 
 source ./input_validation.sh
+check_nro_args --expected "1" --actual "$#"
+validate_mac_address "$1"
+mac_address="$1"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
@@ -49,9 +52,6 @@ if [ ! -f "$EXTENSIONS_CONF" ]; then
     echo "Error: $EXTENSIONS_CONF not found."
     exit 1
 fi
-
-# Ask the user for the MAC address to check
-read -p "Enter the MAC address you want to check (format: SEPXXXXXXXXXXXX): " mac_address
 
 # Check if the MAC address is present in the sip.conf file
 if grep -q "$mac_address" "$SIP_CONF"; then
