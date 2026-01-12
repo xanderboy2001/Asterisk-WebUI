@@ -104,6 +104,8 @@ wsl --install Ubuntu
      git clone https://github.com/xanderboy2001/asterisk-webui.git
      ```
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
