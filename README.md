@@ -116,6 +116,17 @@ Follow these instructions to run the site locally:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Roadmap
+
+- [ ] Rework shell scripts to properly accept input from site
+    - [ ] Develop helper script to sanitize and validate inputs
+- [ ] Add coloring with CSS
+- [ ] Add dark mode
+
+See the [open issues](https://github.com/xanderboy2001/asterisk-webui/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
