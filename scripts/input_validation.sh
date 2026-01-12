@@ -45,7 +45,7 @@ check_nro_args() {
 
 
 		# Make sure both arguments are positive
-		if [ "$expected" -lt 1 ] || [ "$actual" -lt 1 ]; then
+		if [ "$expected" -lt 0 ] || [ "$actual" -lt 0 ]; then
 				exit_error "Both arguments must be greater than 0"
 		fi
 
