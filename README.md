@@ -75,6 +75,21 @@ These instructions will only walk through installing the tools required for runn
 
 ### Prerequisites
 This guide assumes you are using an Ubuntu (or other Debian-based) distrubution.
+If you are using Windows, follow the instructions below.
+
+<details>
+  <summary><strong>Installing Ubuntu via WSL</strong></summary>
+  
+  1. Right click the Start button and select **Windows PowerShell (Admin)**. On Windows 11, this may be called **Terminal (Admin)**.
+  2. Run the following command:
+
+```PowerShell
+wsl --install Ubuntu
+```
+
+  3. Restart your computer.
+  4. Launch Ubuntu from the Start Menu
+</details>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
