@@ -97,6 +97,13 @@ wsl --install Ubuntu
   sudo apt update && sudo apt install php
   ```
 
+### Installation
+
+  1. Clone the repo
+     ```sh
+     git clone https://github.com/xanderboy2001/asterisk-webui.git
+     ```
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
