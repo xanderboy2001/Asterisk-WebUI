@@ -108,7 +108,7 @@ wsl --install Ubuntu
 
 ## Usage
 Follow these instructions to run the site locally:
-  1. Run a PHP test server
+  1. Navigate to the project directory and run a PHP test server
      ```sh
      php -S localhost:8000
      ```
