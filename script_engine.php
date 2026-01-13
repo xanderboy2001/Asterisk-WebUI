@@ -357,8 +357,15 @@ function run_script(string $script_name, array $scripts, array $inputs = []): st
     }
 
 		$scriptDef = $scripts[$script_name];
-		$sanitized_inputs = [];
 
+		$expected = count($scriptDef['inputs']);
+		$actual = count($inputs);
+
+		if ($expected !== $actual) {
+				return "Invalid input: expected $expected arguments, received $actual.";
+		}
+
+		$sanitized_inputs = [];
 		foreach ($scriptDef['inputs'] as $index => $inputDef) {
 				$raw = $inputs[$index] ?? '';
 				$sanitized = sanitize_input($raw, $inputDef);
