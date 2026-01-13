@@ -18,38 +18,45 @@ check_nro_args() {
 		local actual="$2"
 
 		# Make sure both arguments are positive
-		if ! [ "$expected" -eq "$actual" ]; then
-				exit_error "Internal error: invalid argument count"
+		if [ "$expected" -ne "$actual" ]; then
+				echo >&2 "Internal error: expected $expected args, got $actual"
+				return 2
 		fi
 }
 
 validate_extension() {
-		set -euo pipefail
 		local ext="$1"
-		[[ "$ext" =~ ^[0-9]{4}$ ]] \
-				|| exit_error "Invalid extension format: '$ext'"
+
+		if [[ ! "$ext" =~ ^[0-9]{4}$ ]]; then
+				echo >&2 "Invalid extension format: '$ext'"
+				return 1
+		fi
 }
 
 validate_mac_address() {
 		set -euo pipefail
 		local mac="$1"
 
-		[[ "$mac" =~ ^([0-9A-Fa-f]{2}([-:][0-9A-Fa-f]{2}){5}|[0-9A-Fa-f]{12)$ ]] \
-				|| exit_error "Invalid MAC address format: '$mac'"
+		if [[ ! "$mac" =~ ^([0-9A-Fa-f]{2}([-:][0-9A-Fa-f]{2}){5}|[0-9A-Fa-f]{12)$ ]]; then
+				echo >&2 "Invalid MAC address format: '$mac'"
+				return 1
+		fi
 }
 
 validate_name() {
-		set -euo pipefail
 		local name="$1"
 
-		[[ "$name" =~ ^([A-Za-z+ [A-Za-z]+)$ ]] \
-				exit_error "Invalid name format: '$name'"
+		if [[ ! "$name" =~ ^([A-Za-z+ [A-Za-z]+)$ ]]; then
+				echo >&2 "Invalid name format: '$name'"
+				return 1
+		fi
 }
 
 validate_email() {
-		set -euo pipefail
 		local email="$1"
 
-		[[ "$email" =~ ^([0-9A-Za-z]+@[A-Za-z]+\.[A-Za-z]+)$ ]] \
-				|| exit_error "Invalid email format: '$email'"
+		if [[ ! "$email" =~ ^([0-9A-Za-z]+@[A-Za-z]+\.[A-Za-z]+)$ ]]; then
+				echo >&2 "Invalid email format: '$email'"
+				return 1
+		fi
 }
