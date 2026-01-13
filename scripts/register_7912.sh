@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename "${__file}" .sh)"
+
 # --- HELP ---
 # Registers a Cisco 7965 IP phone by creating a SEP/gk configuration file
 # and updating Asterisk sip.conf and extensions.conf.
@@ -19,6 +23,44 @@ set -euo pipefail
 # ------------
 
 source ./input_validation.sh
+
+local parsed
+parsed=$(getopt -o e:,m:,n: -l extension:,mac-address:,name: -- "$@") \
+		|| exit_error "${__file}: invalid arguments"
+
+eval set -- "$parsed"
+
+while true; do
+		case "$1" in
+				-e|--extension)
+						linenumber="$2"
+						shift 2
+						;;
+				-m|--mac-address)
+						macaddress="$2"
+						shift 2
+						;;
+				-n|--name)
+						callername="$2"
+						shift 2
+						;;
+				--)
+						shift
+						break
+						;;
+				*)
+						exit_error "${__file}: unexpected argument '$1'"
+						;;
+		esac
+done
+
+[ -n "${linenumber:-}" ] || exit_error "${__file}: -e or --extension is required"
+[ -n "${macaddress:-}" ] || exit_error "${__file}: -m or --mac-address is required"
+[ -n "${callername:-}" ] || exit_error "${__file}: -n or --name is required"
+
+validate_extension "${linenumber}"
+validate_mac_address "${macaddress}"
+validate_name "${callername}"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"

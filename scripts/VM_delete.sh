@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename "${__file}" .sh)"
+
 # --- HELP ---# This script deletes a voicemail configuration for a specified extension from Asterisk's voicemail.conf.## Inputs / Behavior:# - Prompts the user for the extension whose voicemail box should be deleted.# - Backs up /etc/asterisk/voicemail.conf before making changes.# - Searches for the specified extension in voicemail.conf and deletes it if found.# - Prints a message if the extension is not found.# - Reloads Asterisk voicemail configuration if desired (command commented out by default).# ------------
 
 source ./input_validation.sh

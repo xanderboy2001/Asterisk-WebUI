@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename "${__file}" .sh)"
+
 # --- HELP ---
 # Replaces a phone in Asterisk by updating its MAC address.
 #

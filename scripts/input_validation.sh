@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-set -euo pipefail
+
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename "${__file}" .sh)"
 
 exit_error() {
 		echo >&2 "$@"
@@ -7,29 +10,20 @@ exit_error() {
 }
 
 check_nro_args() {
+		set -euo pipefail
 
-		local expected
-		local actual
+		local expected=""
+		local actual=""
 
-		local parsed
-		parsed=$(getopt -o e:,a: -l expected:,actual: -- "$@") \
-				|| exit_error "${FUNCNAME[0]}: invalid arguments"
-
-		eval set -- "$parsed"
-
-		while true; do
+		while (($#)); do
 				case "$1" in
-						-e|--expected)
+						--expected)
 								expected="$2"
 								shift 2
 								;;
-						-a|--actual)
+						--actual)
 								actual="$2"
 								shift 2
-								;;
-						--)
-								shift
-								break
 								;;
 						*)
 								exit_error "${FUNCNAME[0]}: unexpected option $1"
@@ -64,23 +58,27 @@ check_nro_args() {
 }
 
 validate_extension() {
+		set -euo pipefail
 		check_nro_args --expected 1 --actual $#
 		echo "$1" | grep -E -q '^[0-9]{4}$' || exit_error "4-digit numeric argument required, '$1' provided"
 }
 
 validate_mac_address() {
+		set -euo pipefail
 		check_nro_args --expected 1 --actual $#
 		echo "$1" | grep -E -q '^([0-9A-Fa-f]{12}|([0-9A-Fa-f]{2}([-:][0-9A-Fa-f]{2}){5}))$' \
 				|| exit_error "MAC address required. Accepted formats are \"ab-cd-ef-01-23-45\". Received: $1"
 }
 
 validate_name() {
+		set -euo pipefail
 		check_nro_args --expected 1 --actual $#
 		echo "$1" | grep -E -q '^[A-Za-z]+ [A-Za-z]+$' \
 				|| exit_error "Name must be two alphabetic strings (e.g. 'John Smith'). Received $1"
 }
 
 validate_email() {
+		set -euo pipefail
 		check_nro_args --expected 1 --actual $#
 		echo "$1" | grep -E -q '^[0-9A-Za-z]+@[A-Za-z]+\.[A-Za-z]+$' || echo "invalid"
 }

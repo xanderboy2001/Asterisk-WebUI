@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename "${__file}" .sh)"
+
 # --- HELP ---# This script displays the Asterisk dialplan for a specified extension in the default context.## Inputs / Behavior:# - Prompts the user to enter an extension number.# - Checks if the input is not empty.# - Uses the Asterisk CLI to retrieve the dialplan for the extension in the 'default' context.# - Displays the dialplan or a message if no dialplan exists for the extension.# - Waits for user input before exiting.# ------------
 
 source ./input_validation.sh

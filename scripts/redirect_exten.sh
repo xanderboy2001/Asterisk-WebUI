@@ -1,11 +1,48 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename "${__file}" .sh)"
+
 # --- HELP ---
 # This script redirects one extension to another.
 # ------------
 
 source ./input_validation.sh
+
+parsed=$(getopt -o '' -l "source-extension:,destination-extension:" -- "$@") \
+		|| exit_error "${__file}: invalid arguments"
+
+eval set -- "$parsed"
+
+while true; do
+		case "$1" in
+				--source-extension)
+						src_extension="$2"
+						shift 2
+						;;
+				--destination-extension)
+						dest_extension="$2"
+						shift 2
+						;;
+				--)
+						shift
+						break
+						;;
+				*)
+						exit_error "${__file}: unexpected argument '$1'"
+						;;
+		esac
+done
+
+[ -n "${src_extension:-}" ] \
+		|| exit_error "${__file}: --source-extension is required"
+[ -n "${dest_extension:-}" ] \
+		|| exit_error "${__file}: --destination-extension is required"
+
+validate_extension "${src_extension}"
+validate_extension "${dest_extension}"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
@@ -25,10 +62,6 @@ fi
 
 # Backup the extensions.conf file before modifying it
 cp $EXTENSIONS_CONF $BACKUP_DIR/extensions.conf.bak_$(date +%F_%T)
-
-# Ask the user for the source and destination extensions
-read -p "Enter the source extension you want to redirect: " src_extension
-read -p "Enter the destination extension (Local channel) to redirect to: " dest_extension
 
 # Check if the source extension exists in extensions.conf
 if grep -q "exten => $src_extension" $EXTENSIONS_CONF; then

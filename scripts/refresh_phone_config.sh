@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename "${__file}" .sh)"
+
 # --- HELP ---
 # Creates a SEP configuration file for a Cisco 7965 IP phone.
 #
@@ -19,6 +23,10 @@ set -euo pipefail
 # ------------
 
 source ./input_validation.sh
+check_nro_args --expected "1" --actual "$#"
+
+validate_extension "$1"
+extension="$1"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
@@ -41,9 +49,6 @@ REBOOT_SCRIPT="/var/lib/asterisk/scripts/reboot_phone.py"
 mkdir -p "$BACKUP_DIR"
 
 echo "This script will create the SEP file for a 7965 IP Phone"
-
-# Get user input for the extension number
-read -p 'Extension Number: ' extension
 
 # Look up the MAC address from extensions.conf, ignoring data after an &
 macaddress=$(grep -E "exten\s*=>\s*$extension,1,Dial\(SIP/SEP[0-9A-Fa-f]+" "$EXTENSIONS_CONF" | sed -E 's/.*Dial\(SIP\/SEP([0-9A-Fa-f]+).*/\1/' | head -n 1)
