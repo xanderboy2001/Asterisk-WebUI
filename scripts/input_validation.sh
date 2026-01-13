@@ -5,8 +5,10 @@ __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename "${__file}" .sh)"
 
 exit_error() {
-		echo >&2 "$@"
-		exit 1
+		local msg="$1"
+		local code="${2:-2}"
+		echo >&2 "$msg"
+		exit "$code"
 }
 
 check_nro_args() {
