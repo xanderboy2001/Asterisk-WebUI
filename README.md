@@ -63,10 +63,11 @@ It dynamically generates input fields to collect the arguments for the scripts.
 
 ### Built with
 
-* [![PHP][PHP.js]][PHP-url]
+* [![Bash][Bash-js]][Bash-url]
+* [![CSS][CSS-js]][CSS-url]
 * [![HTML][HTML.js]][HTML-url]
 * [![JavaScript][JavaScript-js]][JavaScript-url]
-* [![Bash][Bash-js]][Bash-url]
+* [![PHP][PHP.js]][PHP-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -191,11 +192,13 @@ Project Link: [https://github.com/xanderboy2001/asterisk-webui](https://github.c
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/alexander-e-christian
 <!-- Shields.io badges -->
-[PHP.js]: https://img.shields.io/badge/php-%23777BB4.svg?&logo=php&logoColor=white
-[PHP-url]: https://www.php.net
-[HTML.js]: https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white
-[HTML-url]: https://en.wikipedia.org/wiki/HTML
-[JavaScript-js]: https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000
-[JavaScript-url]: https://en.wikipedia.org/wiki/JavaScript
 [Bash-js]: https://img.shields.io/badge/Bash-4EAA25?logo=gnubash&logoColor=fff
 [Bash-url]: https://en.wikipedia.org/wiki/Bash_(Unix_shell)
+[CSS-js]: https://img.shields.io/badge/CSS-639?logo=css&logoColor=fff
+[CSS-url]: https://en.wikipedia.org/wiki/CSS
+[HTML-url]: https://en.wikipedia.org/wiki/HTML
+[HTML.js]: https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white
+[JavaScript-js]: https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000
+[JavaScript-url]: https://en.wikipedia.org/wiki/JavaScript
+[PHP-url]: https://www.php.net
+[PHP.js]: https://img.shields.io/badge/php-%23777BB4.svg?&logo=php&logoColor=white
