@@ -20,7 +20,7 @@ __base="$(basename "${__file}" .sh)"
 # - Optionally reloads Asterisk if uncommented.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 check_nro_args --expected "1" --actual "$#"
 validate_extension "$1"
 extension="$1"

@@ -22,7 +22,7 @@ __base="$(basename "${__file}" .sh)"
 # - Reloads Asterisk dialplan, SIP, and voicemail configurations after removal.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"

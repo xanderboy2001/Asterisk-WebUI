@@ -9,40 +9,12 @@ __base="$(basename "${__file}" .sh)"
 # This script redirects one extension to another.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 
-parsed=$(getopt -o '' -l "source-extension:,destination-extension:" -- "$@") \
-		|| exit_error "${__file}: invalid arguments"
+check_nro_args --expected '2' --actual $#
 
-eval set -- "$parsed"
-
-while true; do
-		case "$1" in
-				--source-extension)
-						src_extension="$2"
-						shift 2
-						;;
-				--destination-extension)
-						dest_extension="$2"
-						shift 2
-						;;
-				--)
-						shift
-						break
-						;;
-				*)
-						exit_error "${__file}: unexpected argument '$1'"
-						;;
-		esac
-done
-
-[ -n "${src_extension:-}" ] \
-		|| exit_error "${__file}: --source-extension is required"
-[ -n "${dest_extension:-}" ] \
-		|| exit_error "${__file}: --destination-extension is required"
-
-validate_extension "${src_extension}"
-validate_extension "${dest_extension}"
+validate_extension "$1"
+validate_extension "$2"
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"
@@ -50,6 +22,9 @@ if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "Arguments: $*"
 	exit 0
 fi
+
+src_extension="$1"
+dest_extension="$2"
 
 # Define the path to the extensions.conf file
 EXTENSIONS_CONF="/etc/asterisk/extensions.conf"

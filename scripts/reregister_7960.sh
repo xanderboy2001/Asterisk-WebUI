@@ -20,7 +20,7 @@ __base="$(basename "${__file}" .sh)"
 # - Ensures TFTP directory ownership is set to user 'tftp'.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"

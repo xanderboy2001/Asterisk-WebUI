@@ -15,7 +15,7 @@ __base="$(basename "${__file}" .sh)"
 # - Waits for the user to press Enter before exiting.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"

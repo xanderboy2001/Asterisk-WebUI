@@ -22,7 +22,7 @@ __base="$(basename "${__file}" .sh)"
 # - Performs simple string matching; no validation or normalization of MAC format.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 check_nro_args --expected "1" --actual "$#"
 validate_mac_address "$1"
 mac_address="$1"

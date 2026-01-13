@@ -22,7 +22,7 @@ __base="$(basename "${__file}" .sh)"
 # - Does not account for includes, pattern matches (_X., _NXX), or generated dialplans.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 
 check_nro_args --expected "1" --actual "$#"
 validate_extension "$1"

@@ -22,7 +22,7 @@ __base="$(basename "${__file}" .sh)"
 # - Updates permissions and reloads Asterisk SIP and dialplan configurations.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 
 local parsed
 parsed=$(getopt -o e:,m:,n: -l extension:,mac-address:,name: -- "$@") \

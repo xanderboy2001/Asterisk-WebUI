@@ -16,7 +16,7 @@ __base="$(basename "${__file}" .sh)"
 # - Simply calls the Python script; all logic is handled there.
 # ------------
 
-source ./input_validation.sh
+source ${__dir}/input_validation.sh
 
 if [[ "${TESTING:-0}" == "1" ]]; then
 	echo "[TEST MODE]"

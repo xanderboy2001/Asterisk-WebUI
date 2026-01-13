@@ -363,8 +363,9 @@ function run_script(string $script_name, array $scripts, array $inputs = []): st
 				$raw = $inputs[$index] ?? '';
 				$sanitized = sanitize_input($raw, $inputDef);
 
-				if (!validate_input($sanitized, $inputDef)) {
-						return "Invalid input at position $index: " . htmlspecialchars($raw);
+				$error = validate_input($sanitized, $inputDef);
+				if ($error !== null) {
+						return "Invalid input at position $index: $error";
 				}
 
 				$sanitized_inputs[] = $sanitized;
@@ -373,7 +374,9 @@ function run_script(string $script_name, array $scripts, array $inputs = []): st
 		$env = TESTING_MODE ? 'TESTING=1 ' : '';
 		$cmd = $env . escapeshellcmd($scriptDef['path']);
 		foreach ($sanitized_inputs as $arg) {
-				$cmd .= ' ' . escapeshellarg($arg);
+				if ($arg !== '') {
+						$cmd .= ' ' . escapeshellarg($arg);
+				}
 		}
 
 		return shell_exec($cmd . " 2>&1");
