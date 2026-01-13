@@ -18,7 +18,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						]
 				]
 		],
@@ -38,7 +39,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						]
 				]
 		],
@@ -58,7 +60,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						]
 				]
 		],
@@ -76,7 +79,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						]
 				]
 		],
@@ -86,12 +90,14 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Source Extension"
 						],
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Destination Extension"
 						]
 				]
 		],
@@ -101,7 +107,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						]
 				]
 		],
@@ -116,7 +123,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						],
 						[
 								"type" => "text",
@@ -135,7 +143,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						],
 						[
 								"type" => "text",
@@ -153,7 +162,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						],
 						[
 								"type" => "text",
@@ -203,7 +213,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						],
 						[
 								"type" => "text",
@@ -221,7 +232,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						],
 						[
 								"type" => "number",
@@ -235,8 +247,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
-						]
+								"length" => 4,
+								"placeholder" => "Extension"						]
 				]
 		],
 		'View Active Calls' => [
@@ -249,7 +261,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						]
 				]
 		],
@@ -259,7 +272,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						]
 				]
 		],
@@ -273,7 +287,8 @@ $scripts = [
 						[
                 "type" => "number",
 								"is_extension" => true,
-								"length" => 4
+								"length" => 4,
+								"placeholder" => "Extension"
 						]
 				]
 		]
